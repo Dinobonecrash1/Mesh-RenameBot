@@ -1,3 +1,4 @@
+from ..utils.file_utils import rem_this
 from MeshRenameBot.database.user_db import UserDB
 from pyrogram.types.messages_and_media.message_entity import MessageEntity
 from .Default import DefaultManeuver
@@ -28,6 +29,8 @@ class RenameManeuver(DefaultManeuver):
         self._fltr_obj = FilterUtils(cmd_message.from_user.id)
 
     async def execute(self) -> None:
+    # Existing code
+        
         self._execute_pending = False
 
         if self._media_message is None:
@@ -37,10 +40,15 @@ class RenameManeuver(DefaultManeuver):
             await self._cmd_message.reply_text(Trans.REPLY_TO_MEDIA, quote=True)
             return
         
-        self._media_message.from_user = self._cmd_message.from_user
+        if self._media_message is None:
+    await self._cmd_message.reply_text(Trans.REPLY_TO_MEDIA, quote=True)
+    return
+elif not self._media_message.media:
+    await self._cmd_message.reply_text(Trans.REPLY_TO_MEDIA, quote=True)
+    return
 
-        is_video = False
-        is_audio = False
+# Rest of the code
+
 
         mime = ""
         try:
@@ -270,9 +278,10 @@ class RenameManeuver(DefaultManeuver):
             await progress.edit_text("Rename process errored.")
             return
 
-        rem_this(thumb_path)
-        rem_this(ndl_path)
-        rem_this(dl_path)
+        rem_this_file(thumb_path)
+rem_this_file(ndl_path)
+rem_this_file(dl_path)
+
         
         
 
