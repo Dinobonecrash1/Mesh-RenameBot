@@ -1,5 +1,4 @@
 from ..utils.file_utils import rem_this
-from MeshRenameBot.database.user_db import UserDB
 from pyrogram.types.messages_and_media.message_entity import MessageEntity
 from .Default import DefaultManeuver
 from pyrogram import Client, StopTransmission
