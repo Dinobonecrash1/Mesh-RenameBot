@@ -46,6 +46,7 @@ elif not self._media_message.media:
     await self._cmd_message.reply_text(Trans.REPLY_TO_MEDIA, quote=True)
     return
 
+
 # Rest of the code
 
 
